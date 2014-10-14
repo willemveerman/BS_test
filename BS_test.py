@@ -91,6 +91,9 @@ class Features():
 #        bioservices_quickgo_obj = QuickGO()
 #        #Search QuickGO for protein UniProt ID
 #        res = bioservices_quickgo_obj.Annotation_from_protein(protein=str(Features.part_attrib(self,'uniprot_id')))
-#        
+#
 #        #Use Pandas.DataFrame method object iloc to select specific columns
 #        print res.iloc[:,[4,5]]
+
+
+#test
