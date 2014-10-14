@@ -94,10 +94,3 @@ class Features():
 #
 #        #Use Pandas.DataFrame method object iloc to select specific columns
 #        print res.iloc[:,[4,5]]
-
-
-<<<<<<< HEAD
-#test2
-=======
-#test
->>>>>>> 14c6338f5e9026459eb2803bf571e719ec064d87
