@@ -35,6 +35,7 @@ class Features():
         
         uniprot_IDs_list = []
         
+        
         kegg_class = KEGGParser()
         
         for i in self.list:
@@ -43,7 +44,7 @@ class Features():
                 parsed_entry = kegg_class.parse(gene_kegg_entry)
             except AttributeError:
                 pass
-            uniprot_IDs_list.append(str(parsed_entry['dblinks']['UniProt']))
+            uniprot_IDs_list.append(str(parsed_entry['dblinks']['UniProt']).split())
         
         return uniprot_IDs_list
         
@@ -58,6 +59,19 @@ class Features():
         
         for i, gene in enumerate(gene_list):
             f.write(gene+" "+up_list[i]+"\n")
+                
+        f.close()
+        
+    def file_up_first(self,filename,organism):
+        
+        f=open(filename,"w")
+        
+        gene_list= self.list
+        
+        up_list = self.conv_to_up(organism)
+        
+        for i, gene in enumerate(gene_list):
+            f.write(gene+" "+up_list[i][0]+"\n")
                 
         f.close()
         
