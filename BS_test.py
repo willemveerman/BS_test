@@ -35,7 +35,6 @@ class Features():
         
         uniprot_IDs_list = []
         
-        
         kegg_class = KEGGParser()
         
         for i in self.list:
@@ -73,6 +72,35 @@ class Features():
         for i, gene in enumerate(gene_list):
             f.write(gene+" "+up_list[i][0]+"\n")
                 
+        f.close()
+        
+    def go_list(self,organism):
+        
+        up_list = self.conv_to_up(organism)
+        
+        up_list_first = []
+        
+        for i in up_list:
+            up_list_first.append(i[0])
+        
+        go_obj = QuickGO()
+        
+        go_list = []
+        
+        for i in up_list_first:
+            go_list.append(go_obj.Annotation(protein=i, frmt="tsv", tax=9606, source="UniProt", col="proteinName,goID,goName,with"))
+        
+        return go_list
+        
+    def go_list_file(self,organism,filename):
+        
+        go_list_local = self.go_list(organism)
+        
+        f=open(filename,"w")
+        
+        for i, gene in enumerate(go_list_local):
+            f.write(self.items()[i]+" - "+gene)
+            
         f.close()
         
     def parser(self):
